@@ -1,6 +1,6 @@
 package com.practice.graphql.domain.posting.presentation.controller
 
-import com.practice.graphql.domain.posting.presentation.dto.request.InputPosting
+import com.practice.graphql.domain.posting.presentation.dto.request.PostingReq
 import com.practice.graphql.domain.posting.service.PostingService
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
@@ -13,7 +13,7 @@ class PostingController(
 ){
 
     @MutationMapping
-    fun writePosting(@Argument inputPosting: InputPosting) =
+    fun writePosting(@Argument inputPosting: PostingReq) =
         postingService.save(inputPosting)
 
     @QueryMapping

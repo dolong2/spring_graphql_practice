@@ -2,7 +2,7 @@ package com.practice.graphql.domain.posting.presentation.dto.request
 
 import com.practice.graphql.domain.posting.Posting
 
-class InputPosting(
+class PostingReq(
     val title:String,
     val content: String,
 ) {

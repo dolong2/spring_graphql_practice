@@ -2,7 +2,7 @@ package com.practice.graphql.domain.posting.presentation.dto.response
 
 import com.practice.graphql.domain.posting.Posting
 
-class ResponsePosting(
+class PostingRes(
     val id: Long,
     val title: String,
     val content: String,
