@@ -1,6 +1,7 @@
 package com.practice.graphql.domain.posting.service
 
-import com.practice.graphql.domain.posting.Posting
+import com.practice.graphql.domain.posting.presentation.dto.request.InputPosting
+import com.practice.graphql.domain.posting.presentation.dto.response.ResponsePosting
 import com.practice.graphql.domain.posting.repository.PostingRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -11,20 +12,20 @@ class PostingService(
     val postingRepository: PostingRepository,
 ){
     @Transactional
-    fun save(title: String, content: String): Posting{
-        val posting = Posting(
-            title = title,
-            content = content,
-        )
-        return postingRepository.save(posting)
+    fun save(inputPosting: InputPosting): ResponsePosting{
+        val posting = postingRepository.save(inputPosting.toEntity())
+        return ResponsePosting(posting)
     }
 
     @Transactional(readOnly = true)
-    fun getOne(id: Long) =
-        postingRepository.findById(id)
+    fun getOne(id: Long): ResponsePosting {
+        val posting = postingRepository.findById(id)
             .orElseThrow { throw RuntimeException() }
+        return ResponsePosting(posting)
+    }
 
     @Transactional(readOnly = true)
     fun getAll() =
         postingRepository.findAll()
+            .map{ResponsePosting(it)}
 }
