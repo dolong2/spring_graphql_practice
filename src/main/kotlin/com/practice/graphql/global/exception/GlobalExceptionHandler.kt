@@ -1,6 +1,6 @@
-package com.practice.graphql.global.config.exception
+package com.practice.graphql.global.exception
 
-import com.practice.graphql.global.config.exception.collections.BasicException
+import com.practice.graphql.global.exception.collections.BasicException
 import graphql.ErrorType
 import graphql.GraphQLError
 import graphql.GraphqlErrorBuilder

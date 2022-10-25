@@ -1,4 +1,4 @@
-package com.practice.graphql.global.config.exception
+package com.practice.graphql.global.exception
 
 enum class ErrorCode(
     val msg: String

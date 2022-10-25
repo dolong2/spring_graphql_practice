@@ -1,6 +1,6 @@
-package com.practice.graphql.global.config.exception.collections
+package com.practice.graphql.global.exception.collections
 
-import com.practice.graphql.global.config.exception.ErrorCode
+import com.practice.graphql.global.exception.ErrorCode
 import java.lang.RuntimeException
 
 open class BasicException(
