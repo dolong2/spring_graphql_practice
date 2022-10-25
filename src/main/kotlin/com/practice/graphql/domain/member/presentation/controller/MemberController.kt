@@ -1,5 +1,6 @@
 package com.practice.graphql.domain.member.presentation.controller
 
+import com.practice.graphql.domain.member.presentation.dto.request.SigninReq
 import com.practice.graphql.domain.member.presentation.dto.request.SignupReq
 import com.practice.graphql.domain.member.service.MemberService
 import com.practice.graphql.global.response.SuccessResponse
@@ -18,5 +19,8 @@ class MemberController(
         return SuccessResponse
     }
 
+    @MutationMapping
+    fun signin(@Argument inputLogin: SigninReq) =
+        memberService.signin(inputLogin)
 
 }

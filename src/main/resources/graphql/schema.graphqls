@@ -1,6 +1,7 @@
 type Mutation{
     writePosting(inputPosting: InputPosting!): ResponsePosting
     signupMember(inputMember: InputMember!): SuccessResponse
+    signin(inputLogin: InputLogin): ResponseLogin
 }
 
 type Query{

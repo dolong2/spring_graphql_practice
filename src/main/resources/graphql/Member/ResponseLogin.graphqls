@@ -1,0 +1,4 @@
+type ResponseLogin{
+    accessToken: String!
+    refreshToken: String!
+}
