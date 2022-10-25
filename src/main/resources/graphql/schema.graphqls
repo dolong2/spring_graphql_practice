@@ -1,0 +1,9 @@
+type Mutation{
+    writePosting(inputPosting: InputPosting!): ResponsePosting
+    signupMember(inputMember: InputMember!): SuccessResponse
+}
+
+type Query{
+    getPostings:[ResponsePosting]
+    getPosting(id:ID!): ResponsePosting
+}

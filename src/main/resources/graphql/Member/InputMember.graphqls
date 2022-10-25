@@ -1,0 +1,5 @@
+input InputMember{
+    email: String!
+    name: String!
+    password: String!
+}
