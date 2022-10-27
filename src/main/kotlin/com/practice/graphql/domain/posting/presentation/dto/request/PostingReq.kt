@@ -1,14 +1,16 @@
 package com.practice.graphql.domain.posting.presentation.dto.request
 
+import com.practice.graphql.domain.member.Member
 import com.practice.graphql.domain.posting.Posting
 
 class PostingReq(
     val title:String,
     val content: String,
 ) {
-    fun toEntity() =
+    fun toEntity(member: Member) =
         Posting(
             title = title,
             content = content,
+            writer = member,
         )
 }
