@@ -2,4 +2,5 @@ type ResponsePosting{
     id: ID!
     title: String!
     content: String!
+    writer: ID!
 }

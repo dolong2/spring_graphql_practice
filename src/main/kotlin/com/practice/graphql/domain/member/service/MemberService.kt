@@ -2,6 +2,7 @@ package com.practice.graphql.domain.member.service
 
 import com.practice.graphql.domain.member.presentation.dto.request.SigninReq
 import com.practice.graphql.domain.member.presentation.dto.request.SignupReq
+import com.practice.graphql.domain.member.presentation.dto.response.MemberRes
 import com.practice.graphql.domain.member.presentation.dto.response.SigninRes
 import com.practice.graphql.domain.member.repository.MemberRepository
 import com.practice.graphql.global.exception.collections.BasicException
@@ -41,4 +42,10 @@ class MemberService(
         return SigninRes(accessToken, refreshToken)
     }
 
+    @Transactional(rollbackFor = [BasicException::class], readOnly = true)
+    fun getOneMember(id: Long): MemberRes{
+        val member = memberRepository.findById(id)
+            .orElseThrow { throw MemberNotExistException() }
+        return MemberRes(member)
+    }
 }

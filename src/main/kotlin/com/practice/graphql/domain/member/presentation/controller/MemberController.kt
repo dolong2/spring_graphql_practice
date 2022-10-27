@@ -6,6 +6,7 @@ import com.practice.graphql.domain.member.service.MemberService
 import com.practice.graphql.global.response.SuccessResponse
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
+import org.springframework.graphql.data.method.annotation.QueryMapping
 import org.springframework.stereotype.Controller
 
 @Controller
@@ -23,4 +24,7 @@ class MemberController(
     fun signin(@Argument inputLogin: SigninReq) =
         memberService.signin(inputLogin)
 
+    @QueryMapping
+    fun getMember(@Argument id: Long) =
+        memberService.getOneMember(id)
 }
