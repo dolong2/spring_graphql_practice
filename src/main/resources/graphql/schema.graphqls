@@ -2,6 +2,7 @@ type Mutation{
     writePosting(inputPosting: InputPosting!): ResponsePosting
     signupMember(inputMember: InputMember!): SuccessResponse
     signin(inputLogin: InputLogin): ResponseLogin
+    updatePosting(id:ID!, updatePostingReq: UpdatePosting): ResponsePosting
 }
 
 type Query{

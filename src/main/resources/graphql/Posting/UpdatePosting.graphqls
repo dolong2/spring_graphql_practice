@@ -1,0 +1,4 @@
+input UpdatePosting{
+    title: String!
+    content: String!
+}
