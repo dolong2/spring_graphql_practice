@@ -6,7 +6,7 @@ type Mutation{
 }
 
 type Query{
-    getPostings:[ResponsePosting]
+    getPostings:ListResponsePosting
     getPosting(id:ID!): ResponsePosting
     getMember(id: ID!): ResponseMember
 }

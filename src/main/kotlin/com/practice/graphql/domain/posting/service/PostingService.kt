@@ -2,6 +2,7 @@ package com.practice.graphql.domain.posting.service
 
 import com.practice.graphql.domain.posting.presentation.dto.request.PostingReq
 import com.practice.graphql.domain.posting.presentation.dto.request.PostingUpdateReq
+import com.practice.graphql.domain.posting.presentation.dto.response.PostingListRes
 import com.practice.graphql.domain.posting.presentation.dto.response.PostingRes
 import com.practice.graphql.domain.posting.repository.PostingRepository
 import com.practice.graphql.global.exception.collections.BasicException
@@ -33,8 +34,10 @@ class PostingService(
 
     @Transactional(readOnly = true, rollbackFor = [BasicException::class])
     fun getAll() =
-        postingRepository.findAll()
-            .map{PostingRes(it)}
+        PostingListRes(
+            list = postingRepository.findAll()
+                .map{PostingRes(it)}
+        )
 
     @Transactional(rollbackFor = [BasicException::class])
     fun updatePosting(id: Long, postingUpdateReq: PostingUpdateReq): PostingRes{
