@@ -1,5 +1,6 @@
 package com.practice.graphql.domain.posting.service
 
+import com.practice.graphql.domain.posting.facade.PostingFacade
 import com.practice.graphql.domain.posting.presentation.dto.request.PostingReq
 import com.practice.graphql.domain.posting.presentation.dto.request.PostingUpdateReq
 import com.practice.graphql.domain.posting.presentation.dto.response.PostingListRes
@@ -15,6 +16,7 @@ import java.lang.RuntimeException
 
 @Service
 class PostingService(
+    val postingFacade: PostingFacade,
     val postingRepository: PostingRepository,
     val currentMemberUtil: CurrentMemberUtil,
 ){
@@ -26,11 +28,8 @@ class PostingService(
     }
 
     @Transactional(readOnly = true, rollbackFor = [BasicException::class])
-    fun getOne(id: Long): PostingRes {
-        val posting = postingRepository.findById(id)
-            .orElseThrow { throw PostingNotExistException() }
-        return PostingRes(posting)
-    }
+    fun getOne(id: Long): PostingRes =
+        PostingRes(postingFacade.getById(id))
 
     @Transactional(readOnly = true, rollbackFor = [BasicException::class])
     fun getAll() =
@@ -41,8 +40,7 @@ class PostingService(
 
     @Transactional(rollbackFor = [BasicException::class])
     fun updatePosting(id: Long, postingUpdateReq: PostingUpdateReq): PostingRes{
-        val posting = postingRepository.findById(id)
-            .orElseThrow { throw PostingNotExistException() }
+        val posting = postingFacade.getById(id)
         if(posting.writer != currentMemberUtil.getCurrentMember())
             throw MemberNotSameException()
         posting.update(postingUpdateReq)
