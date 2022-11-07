@@ -1,5 +1,6 @@
 package com.practice.graphql.domain.member.service
 
+import com.practice.graphql.domain.member.facade.MemberFacade
 import com.practice.graphql.domain.member.presentation.dto.request.SigninReq
 import com.practice.graphql.domain.member.presentation.dto.response.SigninRes
 import com.practice.graphql.domain.member.repository.MemberRepository
@@ -16,10 +17,11 @@ class SigninService(
     private val memberRepository: MemberRepository,
     private val tokenProvider: TokenProvider,
     private val passwordEncoder: PasswordEncoder,
+    private val memberFacade: MemberFacade,
 ){
     @Transactional(rollbackFor = [BasicException::class])
     fun execute(signinReq: SigninReq): SigninRes {
-        if(!memberRepository.existsByEmail(signinReq.email))
+        if(!memberFacade.existMember(signinReq.email))
             throw MemberNotExistException()
         val member = memberRepository.findByEmail(signinReq.email) ?: throw MemberNotExistException()
         if(!passwordEncoder.matches(signinReq.password, member.password))

@@ -1,5 +1,6 @@
 package com.practice.graphql.domain.member.service
 
+import com.practice.graphql.domain.member.facade.MemberFacade
 import com.practice.graphql.domain.member.presentation.dto.request.SignupReq
 import com.practice.graphql.domain.member.repository.MemberRepository
 import com.practice.graphql.global.exception.collections.BasicException
@@ -12,10 +13,11 @@ import org.springframework.transaction.annotation.Transactional
 class SignupService(
     private val memberRepository: MemberRepository,
     private val passwordEncoder: PasswordEncoder,
+    private val memberFacade: MemberFacade,
 ){
     @Transactional(rollbackFor = [BasicException::class])
     fun execute(signupReq: SignupReq){
-        if(memberRepository.existsByEmail(signupReq.email))
+        if(memberFacade.existMember(signupReq.email))
             throw MemberAlreadyExistException()
         val encodedPassword = passwordEncoder.encode(signupReq.password)
         val member = signupReq.toEntity(encodedPassword)
