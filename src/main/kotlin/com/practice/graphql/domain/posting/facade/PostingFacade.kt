@@ -3,9 +3,9 @@ package com.practice.graphql.domain.posting.facade
 import com.practice.graphql.domain.posting.Posting
 import com.practice.graphql.domain.posting.repository.PostingRepository
 import com.practice.graphql.global.exception.collections.PostingNotExistException
-import org.springframework.stereotype.Component
+import com.practice.graphql.global.util.Facade
 
-@Component
+@Facade
 class PostingFacade(
     private val postingRepository: PostingRepository
 ){
