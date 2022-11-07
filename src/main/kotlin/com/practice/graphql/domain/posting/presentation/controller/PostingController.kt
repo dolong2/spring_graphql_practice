@@ -8,6 +8,8 @@ import org.springframework.graphql.data.method.annotation.MutationMapping
 import org.springframework.graphql.data.method.annotation.QueryMapping
 import org.springframework.graphql.data.method.annotation.SubscriptionMapping
 import org.springframework.stereotype.Controller
+import reactor.core.publisher.Flux
+import java.util.stream.Stream
 
 @Controller
 class PostingController(
@@ -33,4 +35,15 @@ class PostingController(
     fun updatePosting(@Argument id:Long, @Argument updatePostingReq: PostingUpdateReq) =
         postingUpdateService.execute(id, updatePostingReq)
 
+    @SubscriptionMapping
+    fun getPostingsRealTime() =
+        Flux.fromStream(Stream.generate {
+            postingGetAllService.execute()
+        })
+
+    @SubscriptionMapping
+    fun getPostingRealTime(@Argument id:Long) =
+        Flux.fromStream(Stream.generate {
+            postingGetOneService.execute(id)
+        })
 }

@@ -6,7 +6,12 @@ type Mutation{
 }
 
 type Query{
-    getPostings:ListResponsePosting
+    getPostings: ListResponsePosting
     getPosting(id:ID!): ResponsePosting
     getMember(id: ID!): ResponseMember
+}
+
+type Subscription{
+    getPostingsRealTime: ListResponsePosting
+    getPostingRealTime(id: ID!): ResponsePosting
 }
