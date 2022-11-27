@@ -1,9 +1,9 @@
 package com.practice.graphql.domain.member.facade
 
 import com.practice.graphql.domain.member.repository.MemberRepository
-import com.practice.graphql.global.util.Facade
+import org.springframework.stereotype.Component
 
-@Facade
+@Component
 class MemberFacade(
     private val memberRepository: MemberRepository,
 ){
