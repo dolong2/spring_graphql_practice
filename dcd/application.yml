@@ -1,0 +1,11 @@
+metadata:
+  resourceType: APPLICATION
+  name: graphql
+  description: graphql 서버 애플리케이션
+spec:
+  githubUrl: https://github.com/dolong2/spring_graphql_practice.git
+  applicationType: SPRING_BOOT
+  port: 8080
+  version: 11
+  labels:
+    - graphql
