@@ -1,0 +1,4 @@
+metadata:
+  resourceType: WORKSPACE
+  name: graphql
+  description: graphql을 스프링으로 구현하기 위한 워크스페이스
