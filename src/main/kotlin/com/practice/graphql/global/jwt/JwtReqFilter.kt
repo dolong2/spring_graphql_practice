@@ -3,14 +3,14 @@ package com.practice.graphql.global.jwt
 import com.practice.graphql.global.exception.collections.AccessTokenExpiredException
 import com.practice.graphql.global.exception.collections.TokenNotValidException
 import com.practice.graphql.global.config.security.auth.AuthDetailService
+import jakarta.servlet.FilterChain
+import jakarta.servlet.http.HttpServletRequest
+import jakarta.servlet.http.HttpServletResponse
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource
 import org.springframework.stereotype.Component
 import org.springframework.web.filter.OncePerRequestFilter
-import javax.servlet.FilterChain
-import javax.servlet.http.HttpServletRequest
-import javax.servlet.http.HttpServletResponse
 
 @Component
 class JwtReqFilter(
