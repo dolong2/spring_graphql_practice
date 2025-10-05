@@ -14,10 +14,10 @@ import java.util.Date
 
 @Component
 class TokenProvider {
-    private val ACCESS_TOKEN_EXPIRE_TIME:Long = 1000 * 60 * 60 * 3// 3시간
-    private val REFRESH_TOKEN_EXPIRE_TIME:Long= ACCESS_TOKEN_EXPIRE_TIME/3 * 24 * 30 * 6
     @Value("\${jwt.secret}")
     private val SECRET_KEY:String = ""
+    private val accessExpireTime: Long = 1000 * 60 * 60 * 3
+    private val refreshExpireTime: Long= accessExpireTime/3 * 24 * 30 * 6
 
     private enum class TokenType(val value: String){
         ACCESS_TOKEN("accessToken"),
@@ -69,8 +69,10 @@ class TokenProvider {
 
     fun createAccessToken(email: String, roles: List<Role>): String{
         val claims = Jwts.claims()
-        claims.put(TokenClaimName.ROLES.value, roles)
-        return createToken(TokenType.ACCESS_TOKEN, email, ACCESS_TOKEN_EXPIRE_TIME, claims)
+        claims[TokenClaimName.ROLES.value] = roles
+        return createToken(TokenType.ACCESS_TOKEN, email, accessExpireTime, accessSecret, claims)
     }
-    fun createRefreshToken(email: String): String = createToken(TokenType.REFRESH_TOKEN, email, REFRESH_TOKEN_EXPIRE_TIME, Jwts.claims())
+    fun createRefreshToken(email: String): String {
+        return createToken(TokenType.REFRESH_TOKEN, email, refreshExpireTime, refreshSecret, Jwts.claims())
+    }
 }
