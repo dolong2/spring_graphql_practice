@@ -3,6 +3,8 @@ package com.practice.graphql.global.jwt
 import com.practice.graphql.global.exception.collections.AccessTokenExpiredException
 import com.practice.graphql.global.exception.collections.TokenNotValidException
 import com.practice.graphql.global.config.security.auth.AuthDetailService
+import io.jsonwebtoken.ExpiredJwtException
+import io.jsonwebtoken.InvalidClaimException
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
@@ -19,13 +21,18 @@ class JwtReqFilter(
 ): OncePerRequestFilter() {
     override fun doFilterInternal(request: HttpServletRequest, response: HttpServletResponse, filterChain: FilterChain) {
         val accessToken = request.getHeader("Authorization")
-        if(accessToken!=null){
-            if(tokenProvider.isTokenExpired(accessToken)){
-                throw AccessTokenExpiredException()//토큰만료
-            }else if(!tokenProvider.getTokenType(accessToken).equals("accessToken")){
+        if(accessToken != null) {
+            try {
+                val tokenType = tokenProvider.getTokenType(accessToken)
+                if (tokenType != "accessToken") {
+                    throw TokenNotValidException()
+                }
+                registerSecurityContext(request, accessToken)
+            } catch (_: ExpiredJwtException) {
+                throw AccessTokenExpiredException()
+            } catch (_: InvalidClaimException) {
                 throw TokenNotValidException()
             }
-            registerSecurityContext(request, accessToken)
         }
         filterChain.doFilter(request, response)
     }
