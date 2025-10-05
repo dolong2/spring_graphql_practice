@@ -14,10 +14,12 @@ import java.util.Date
 
 @Component
 class TokenProvider {
-    @Value("\${jwt.secret}")
-    private val SECRET_KEY:String = ""
     private val accessExpireTime: Long = 1000 * 60 * 60 * 3
     private val refreshExpireTime: Long= accessExpireTime/3 * 24 * 30 * 6
+    @Value("\${jwt.access-secret}")
+    private val accessSecret: String = ""
+    @Value("\${jwt.refresh-secret}")
+    private val refreshSecret :String = ""
 
     private enum class TokenType(val value: String){
         ACCESS_TOKEN("accessToken"),
@@ -56,14 +58,14 @@ class TokenProvider {
         }
     }
 
-    private fun createToken(type: TokenType, email: String, expiredTime: Long, claims: Claims): String{
-        claims.put(TokenClaimName.USER_EMAIL.value, email)
-        claims.put(TokenClaimName.TOKEN_TYPE.value, type.value)
+    private fun createToken(type: TokenType, email: String, expiredTime: Long, secretKey: String, claims: Claims): String{
+        claims[TokenClaimName.USER_EMAIL.value] = email
+        claims[TokenClaimName.TOKEN_TYPE.value] = type.value
         return Jwts.builder()
             .addClaims(claims)
             .setIssuedAt(Date(System.currentTimeMillis()))
             .setExpiration(Date(System.currentTimeMillis() + expiredTime))
-            .signWith(getSignInKey(SECRET_KEY), SignatureAlgorithm.HS256)
+            .signWith(getSignInKey(secretKey), SignatureAlgorithm.HS256)
             .compact()
     }
 
