@@ -36,27 +36,27 @@ class TokenProvider {
         return Keys.hmacShaKeyFor(bytes)
     }
 
-    private fun extractAllClaims(token: String): Claims{
+    private fun extractAccessClaims(token: String): Claims{
         val tokenR = token.replace("Bearer ", "")
         return Jwts.parserBuilder()
-            .setSigningKey(getSignInKey(SECRET_KEY))
+            .setSigningKey(getSignInKey(accessSecret))
             .build()
             .parseClaimsJws(tokenR)
             .body
     }
 
-    fun getUserEmail(token: String): String = extractAllClaims(token).get(TokenClaimName.USER_EMAIL.value, String::class.java)
-
-    fun getTokenType(token: String): String = extractAllClaims(token).get(TokenClaimName.TOKEN_TYPE.value, String::class.java)
-
-    fun isTokenExpired(token: String): Boolean{
-        try{
-            extractAllClaims(token).expiration
-            return false
-        }catch (e: ExpiredJwtException){
-            return true
-        }
+    private fun extractRefreshToken(token: String): Claims{
+        val tokenR = token.replace("Bearer ", "")
+        return Jwts.parserBuilder()
+            .setSigningKey(getSignInKey(refreshSecret))
+            .build()
+            .parseClaimsJws(tokenR)
+            .body
     }
+
+    fun getUserEmail(token: String): String = extractAccessClaims(token).get(TokenClaimName.USER_EMAIL.value, String::class.java)
+
+    fun getTokenType(token: String): String = extractAccessClaims(token).get(TokenClaimName.TOKEN_TYPE.value, String::class.java)
 
     private fun createToken(type: TokenType, email: String, expiredTime: Long, secretKey: String, claims: Claims): String{
         claims[TokenClaimName.USER_EMAIL.value] = email
