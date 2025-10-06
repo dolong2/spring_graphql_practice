@@ -18,13 +18,19 @@ class GlobalExceptionHandler: DataFetcherExceptionResolverAdapter() {
 
     override fun resolveToSingleError(e: Throwable, env: DataFetchingEnvironment): GraphQLError? {
         return when (e) {
-            is BasicException -> toGraphQLError(e)
-            else -> super.resolveToSingleError(e, env)
+            is BasicException ->  {
+                log.warn(e.errorCode.code)
+                log.warn(e.errorCode.msg)
+                toGraphQLError(e.errorCode)
+            }
+            else -> {
+                log.error(e.message)
+                super.resolveToSingleError(e, env)
+            }
         }
     }
 
-    private fun toGraphQLError(e: BasicException): GraphQLError? {
-        log.warn("Exception while handling request: ${e.message}", e)
-        return GraphqlErrorBuilder.newError().message(e.message).errorType(ErrorType.DataFetchingException).build()
+    private fun toGraphQLError(errorCode: ErrorCode): GraphQLError? {
+        return GraphqlErrorBuilder.newError().message(errorCode.msg).errorType(errorCode.errorType).build()
     }
 }
