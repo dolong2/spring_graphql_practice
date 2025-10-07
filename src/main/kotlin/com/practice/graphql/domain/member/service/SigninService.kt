@@ -4,7 +4,7 @@ import com.practice.graphql.domain.member.facade.MemberFacade
 import com.practice.graphql.domain.member.presentation.dto.request.SigninReq
 import com.practice.graphql.domain.member.presentation.dto.response.SigninRes
 import com.practice.graphql.domain.member.repository.MemberRepository
-import com.practice.graphql.global.exception.collections.BasicException
+import com.practice.graphql.global.exception.BasicException
 import com.practice.graphql.global.exception.collections.MemberNotExistException
 import com.practice.graphql.global.exception.collections.PasswordNotMatchException
 import com.practice.graphql.global.jwt.TokenProvider

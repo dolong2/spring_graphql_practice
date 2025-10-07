@@ -3,7 +3,7 @@ package com.practice.graphql.domain.member.service
 import com.practice.graphql.domain.member.facade.MemberFacade
 import com.practice.graphql.domain.member.presentation.dto.request.SignupReq
 import com.practice.graphql.domain.member.repository.MemberRepository
-import com.practice.graphql.global.exception.collections.BasicException
+import com.practice.graphql.global.exception.BasicException
 import com.practice.graphql.global.exception.collections.MemberAlreadyExistException
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
