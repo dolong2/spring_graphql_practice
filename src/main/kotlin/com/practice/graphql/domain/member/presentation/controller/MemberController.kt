@@ -1,9 +1,9 @@
 package com.practice.graphql.domain.member.presentation.controller
 
-import com.practice.graphql.domain.member.presentation.dto.request.SigninReq
+import com.practice.graphql.domain.member.presentation.dto.request.SignInReq
 import com.practice.graphql.domain.member.presentation.dto.request.SignupReq
 import com.practice.graphql.domain.member.service.GetOneMemberService
-import com.practice.graphql.domain.member.service.SigninService
+import com.practice.graphql.domain.member.service.SignInService
 import com.practice.graphql.domain.member.service.SignupService
 import com.practice.graphql.global.response.SuccessResponse
 import org.springframework.graphql.data.method.annotation.Argument
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Controller
 @Controller
 class MemberController(
     val getOneMemberService: GetOneMemberService,
-    val signinService: SigninService,
+    val signinService: SignInService,
     val signupService: SignupService,
 ){
 
@@ -25,7 +25,7 @@ class MemberController(
     }
 
     @MutationMapping
-    fun signin(@Argument inputLogin: SigninReq) =
+    fun signin(@Argument inputLogin: SignInReq) =
         signinService.execute(inputLogin)
 
     @QueryMapping

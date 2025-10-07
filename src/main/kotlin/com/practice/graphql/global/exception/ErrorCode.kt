@@ -22,9 +22,9 @@ enum class ErrorCode(
 
     // user
     USER_ALREADY_EXIST("C-01", "유저가 이미 존재합니다.", ErrorType.ExecutionAborted),
-    NOT_EXIST_MEMBER("C-02", "해당 유저가 존재하지 않습니다.", ErrorType.ExecutionAborted),
+    MEMBER_NOT_EXIST("C-02", "해당 유저가 존재하지 않습니다.", ErrorType.ExecutionAborted),
 
     // posting
-    NOT_SAME_WRITER("D-01", "자신의 게시물이 아닙니다.", ErrorType.ExecutionAborted),
+    WRITER_NOT_SAME("D-01", "자신의 게시물이 아닙니다.", ErrorType.ExecutionAborted),
     POSTING_NOT_EXIST("D-02", "해당 포스팅이 존재하지 않습니다.", ErrorType.ExecutionAborted),
 }

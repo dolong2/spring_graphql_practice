@@ -3,7 +3,7 @@ package com.practice.graphql.domain.posting.service
 import com.practice.graphql.domain.posting.facade.PostingFacade
 import com.practice.graphql.domain.posting.presentation.dto.request.PostingUpdateReq
 import com.practice.graphql.domain.posting.presentation.dto.response.PostingRes
-import com.practice.graphql.global.exception.collections.BasicException
+import com.practice.graphql.global.exception.BasicException
 import com.practice.graphql.global.exception.collections.MemberNotSameException
 import com.practice.graphql.global.util.CurrentMemberUtil
 import org.springframework.stereotype.Service
