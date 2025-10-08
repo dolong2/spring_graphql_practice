@@ -2,7 +2,7 @@ package com.practice.graphql.domain.member.service
 
 import com.practice.graphql.domain.member.facade.MemberFacade
 import com.practice.graphql.domain.member.presentation.dto.request.SignInReq
-import com.practice.graphql.domain.member.presentation.dto.response.SigninRes
+import com.practice.graphql.domain.member.presentation.dto.response.TokenRes
 import com.practice.graphql.domain.member.repository.MemberRepository
 import com.practice.graphql.global.exception.BasicException
 import com.practice.graphql.global.exception.collections.MemberNotExistException
@@ -20,7 +20,7 @@ class SignInService(
     private val memberFacade: MemberFacade,
 ){
     @Transactional(rollbackFor = [BasicException::class])
-    fun execute(signInReq: SignInReq): SigninRes {
+    fun execute(signInReq: SignInReq): TokenRes {
         if(!memberFacade.existMember(signInReq.email))
             throw MemberNotExistException()
         val member = memberRepository.findByEmail(signInReq.email) ?: throw MemberNotExistException()
@@ -29,6 +29,6 @@ class SignInService(
         val accessToken = tokenProvider.createAccessToken(member.email, member.roles)
         val refreshToken = tokenProvider.createRefreshToken(member.email)
         member.updateRefreshToken(refreshToken)
-        return SigninRes(accessToken, refreshToken)
+        return TokenRes(accessToken, refreshToken)
     }
 }
