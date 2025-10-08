@@ -1,4 +1,4 @@
-input UpdatePosting{
+input Posting{
     title: String!
     content: String!
 }
