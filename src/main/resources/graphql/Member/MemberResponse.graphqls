@@ -1,4 +1,4 @@
 type MemberResponse{
     name: String!
-    postings: [ResponsePosting]
+    postings: [PostingResponse]
 }
