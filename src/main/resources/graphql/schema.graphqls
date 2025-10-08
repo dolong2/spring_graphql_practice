@@ -13,5 +13,5 @@ type Query{
 
 type Subscription{
     getPostingsRealTime: PostingListResponse
-    getPostingRealTime(id: ID!): ResponsePosting
+    getPostingRealTime(id: ID!): PostingResponse
 }
