@@ -14,7 +14,7 @@ import org.springframework.stereotype.Controller
 @Controller
 class MemberController(
     val getOneMemberService: GetOneMemberService,
-    val signinService: SignInService,
+    val signInService: SignInService,
     val signupService: SignupService,
 ){
 
@@ -25,8 +25,8 @@ class MemberController(
     }
 
     @MutationMapping
-    fun signin(@Argument inputLogin: SignInReq) =
-        signinService.execute(inputLogin)
+    fun signIn(@Argument signInReq: SignInReq) =
+        signInService.execute(signInReq)
 
     @QueryMapping
     fun getMember(@Argument id: Long) =

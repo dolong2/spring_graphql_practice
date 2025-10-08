@@ -1,4 +1,0 @@
-type ResponseMember{
-    name: String!
-    postings: [ResponsePosting]
-}

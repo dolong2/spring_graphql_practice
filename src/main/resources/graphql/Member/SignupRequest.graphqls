@@ -1,4 +1,5 @@
-input InputLogin{
+input SignupRequest{
     email: String!
+    name: String!
     password: String!
 }

@@ -1,0 +1,4 @@
+type MemberResponse{
+    name: String!
+    postings: [PostingResponse]
+}

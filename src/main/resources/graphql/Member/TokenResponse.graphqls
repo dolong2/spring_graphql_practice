@@ -1,4 +1,4 @@
-type ResponseLogin{
+type TokenResponse{
     accessToken: String!
     refreshToken: String!
 }

@@ -1,17 +1,17 @@
 type Mutation{
-    writePosting(inputPosting: InputPosting!): ResponsePosting
-    signupMember(inputMember: InputMember!): SuccessResponse
-    signin(inputLogin: InputLogin): ResponseLogin
-    updatePosting(id:ID!, updatePostingReq: UpdatePosting): ResponsePosting
+    writePosting(postingRequest: PostingRequest!): PostingResponse
+    signupMember(signupRequest: SignupRequest!): SuccessResponse
+    signIn(signInInput: SignInRequest): TokenResponse
+    updatePosting(id:ID!, postingRequest: PostingRequest!): PostingResponse
 }
 
 type Query{
-    getPostings: ListResponsePosting
-    getPosting(id:ID!): ResponsePosting
-    getMember(id: ID!): ResponseMember
+    getPostings: PostingListResponse
+    getPosting(id:ID!): PostingResponse
+    getMember(id: ID!): MemberResponse
 }
 
 type Subscription{
-    getPostingsRealTime: ListResponsePosting
-    getPostingRealTime(id: ID!): ResponsePosting
+    getPostingsRealTime: PostingListResponse
+    getPostingRealTime(id: ID!): PostingResponse
 }

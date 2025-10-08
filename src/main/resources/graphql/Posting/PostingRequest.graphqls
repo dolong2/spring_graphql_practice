@@ -1,4 +1,4 @@
-input InputPosting{
+input PostingRequest{
     title: String!
     content: String!
 }

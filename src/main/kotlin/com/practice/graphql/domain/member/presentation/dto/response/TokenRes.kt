@@ -1,6 +1,6 @@
 package com.practice.graphql.domain.member.presentation.dto.response
 
-class SigninRes(
+class TokenRes(
     val accessToken: String,
     val refreshToken: String,
 )

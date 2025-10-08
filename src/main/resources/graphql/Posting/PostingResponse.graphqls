@@ -1,4 +1,4 @@
-type ResponsePosting{
+type PostingResponse{
     id: ID!
     title: String!
     content: String!

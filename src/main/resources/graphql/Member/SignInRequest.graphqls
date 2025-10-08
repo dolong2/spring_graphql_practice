@@ -1,5 +1,4 @@
-input InputMember{
+input SignInRequest{
     email: String!
-    name: String!
     password: String!
 }
