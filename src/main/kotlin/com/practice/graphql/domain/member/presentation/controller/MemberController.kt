@@ -19,16 +19,20 @@ class MemberController(
 ){
 
     @MutationMapping
-    fun signupMember(@Argument inputMember: SignupReq): SuccessResponse{
-        signupService.execute(inputMember)
+    fun signupMember(@Argument signupRequest: SignupReq): SuccessResponse{
+        signupService.execute(signupRequest)
         return SuccessResponse
     }
 
     @MutationMapping
-    fun signIn(@Argument signInReq: SignInReq) =
-        signInService.execute(signInReq)
+    fun signIn(@Argument signInRequest: SignInReq) =
+        signInService.execute(signInRequest)
 
     @QueryMapping
     fun getMember(@Argument id: Long) =
         getOneMemberService.execute(id)
+
+    @QueryMapping
+    fun getSelfInfo() =
+        getOneMemberService.execute()
 }
