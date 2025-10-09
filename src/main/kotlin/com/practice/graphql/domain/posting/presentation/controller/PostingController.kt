@@ -20,8 +20,8 @@ class PostingController(
 ){
 
     @MutationMapping
-    fun writePosting(@Argument inputPosting: PostingReq) =
-        postingSaveService.execute(inputPosting)
+    fun writePosting(@Argument postingRequest: PostingReq) =
+        postingSaveService.execute(postingRequest)
 
     @QueryMapping
     fun getPosting(@Argument id:Long) =
@@ -32,8 +32,8 @@ class PostingController(
         postingGetAllService.execute()
 
     @MutationMapping
-    fun updatePosting(@Argument id:Long, @Argument updatePostingReq: PostingUpdateReq) =
-        postingUpdateService.execute(id, updatePostingReq)
+    fun updatePosting(@Argument id:Long, @Argument postingRequest: PostingUpdateReq) =
+        postingUpdateService.execute(id, postingRequest)
 
     @SubscriptionMapping
     fun getPostingsRealTime() =
