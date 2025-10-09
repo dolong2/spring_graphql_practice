@@ -1,7 +1,7 @@
 type Mutation{
     writePosting(postingRequest: PostingRequest!): PostingResponse
     signupMember(signupRequest: SignupRequest!): SuccessResponse
-    signIn(signInInput: SignInRequest): TokenResponse
+    signIn(signInRequest: SignInRequest): TokenResponse
     updatePosting(id:ID!, postingRequest: PostingRequest!): PostingResponse
 }
 
@@ -9,6 +9,7 @@ type Query{
     getPostings: PostingListResponse
     getPosting(id:ID!): PostingResponse
     getMember(id: ID!): MemberResponse
+    getSelfInfo: MemberResponse
 }
 
 type Subscription{
