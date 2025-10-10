@@ -36,14 +36,12 @@ class PostingController(
         postingUpdateService.execute(id, postingRequest)
 
     @SubscriptionMapping
-    fun getPostingsRealTime() =
-        Flux.fromStream(Stream.generate {
-            postingGetAllService.execute()
-        })
+    fun getPostingsRealTime(): Flux<PostingListRes> =
+        Flux.interval(Duration.ofSeconds(5))
+            .map { postingGetAllService.execute() }
 
     @SubscriptionMapping
-    fun getPostingRealTime(@Argument id:Long) =
-        Flux.fromStream(Stream.generate {
-            postingGetOneService.execute(id)
-        })
+    fun getPostingRealTime(@Argument id: Long): Flux<PostingRes> =
+        Flux.interval(Duration.ofSeconds(5))
+            .map { postingGetOneService.execute(id) }
 }
