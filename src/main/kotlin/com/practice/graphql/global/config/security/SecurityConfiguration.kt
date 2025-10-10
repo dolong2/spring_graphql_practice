@@ -5,6 +5,7 @@ import com.practice.graphql.global.config.security.handler.CustomAuthenticationE
 import com.practice.graphql.global.jwt.JwtReqFilter
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.http.HttpMethod
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.http.SessionCreationPolicy
@@ -38,8 +39,11 @@ class SecurityConfiguration(
                         "/public",
                         "/h2-console/**"
                     ).permitAll()
+
                     // GraphQL endpoint
-                    .requestMatchers("/graphql").permitAll()
+                    .requestMatchers(HttpMethod.POST, "/graphql").permitAll()
+                    .requestMatchers(HttpMethod.GET, "/graphql").permitAll()
+
                     // 그 외는 인증 필요
                     .anyRequest().authenticated()
             }
