@@ -2,6 +2,8 @@ package com.practice.graphql.domain.posting.presentation.controller
 
 import com.practice.graphql.domain.posting.presentation.dto.request.PostingReq
 import com.practice.graphql.domain.posting.presentation.dto.request.PostingUpdateReq
+import com.practice.graphql.domain.posting.presentation.dto.response.PostingListRes
+import com.practice.graphql.domain.posting.presentation.dto.response.PostingRes
 import com.practice.graphql.domain.posting.service.*
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
@@ -9,7 +11,7 @@ import org.springframework.graphql.data.method.annotation.QueryMapping
 import org.springframework.graphql.data.method.annotation.SubscriptionMapping
 import org.springframework.stereotype.Controller
 import reactor.core.publisher.Flux
-import java.util.stream.Stream
+import java.time.Duration
 
 @Controller
 class PostingController(
@@ -24,7 +26,7 @@ class PostingController(
         postingSaveService.execute(postingRequest)
 
     @QueryMapping
-    fun getPosting(@Argument id:Long) =
+    fun getPosting(@Argument id: Long) =
         postingGetOneService.execute(id)
 
     @QueryMapping
@@ -32,7 +34,7 @@ class PostingController(
         postingGetAllService.execute()
 
     @MutationMapping
-    fun updatePosting(@Argument id:Long, @Argument postingRequest: PostingUpdateReq) =
+    fun updatePosting(@Argument id: Long, @Argument postingRequest: PostingUpdateReq) =
         postingUpdateService.execute(id, postingRequest)
 
     @SubscriptionMapping
