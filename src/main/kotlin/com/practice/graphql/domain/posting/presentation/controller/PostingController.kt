@@ -22,8 +22,8 @@ class PostingController(
 ){
 
     @MutationMapping
-    fun writePosting(@Argument postingRequest: PostingReq) =
-        postingSaveService.execute(postingRequest)
+    fun writePosting(@Argument topicId: Long, @Argument postingRequest: PostingReq) =
+        postingSaveService.execute(topicId, postingRequest)
 
     @QueryMapping
     fun getPosting(@Argument id: Long) =

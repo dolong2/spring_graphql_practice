@@ -2,6 +2,7 @@ package com.practice.graphql.domain.posting
 
 import com.practice.graphql.domain.member.Member
 import com.practice.graphql.domain.posting.presentation.dto.request.PostingUpdateReq
+import com.practice.graphql.domain.topic.Topic
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.Id
@@ -13,8 +14,11 @@ class Posting(
     var title: String,
     var content: String,
     @ManyToOne
-    @JoinColumn(name = "writer")
+    @JoinColumn(name = "writer_id")
     val writer: Member,
+    @ManyToOne
+    @JoinColumn(name = "topic_id")
+    val topic: Topic,
 ){
     @Id
     @GeneratedValue
