@@ -1,5 +1,5 @@
 type Mutation{
-    writePosting(postingRequest: PostingRequest!): PostingResponse
+    writePosting(topicId: ID!, postingRequest: PostingRequest!): PostingResponse
     signupMember(signupRequest: SignupRequest!): SuccessResponse
     signIn(signInRequest: SignInRequest): TokenResponse
     updatePosting(id:ID!, postingRequest: PostingRequest!): PostingResponse
