@@ -1,0 +1,4 @@
+type TopicResponse {
+    id: ID!
+    name: String!
+}

@@ -3,6 +3,7 @@ type Mutation{
     signupMember(signupRequest: SignupRequest!): SuccessResponse
     signIn(signInRequest: SignInRequest): TokenResponse
     updatePosting(id:ID!, postingRequest: PostingRequest!): PostingResponse
+    createTopic(topicRequest: TopicRequest!): TopicResponse
 }
 
 type Query{
