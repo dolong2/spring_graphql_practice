@@ -36,4 +36,6 @@ out/
 ### VS Code ###
 .vscode/
 
+dcd/env.yml
+
 dcd-info
