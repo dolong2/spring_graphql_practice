@@ -1,0 +1,37 @@
+server:
+  port: ${SERVER_PORT}
+
+spring:
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    driver-class-name: ${DB_DRIVER}
+
+  jpa:
+    hibernate:
+      ddl-auto: ${DDL_AUTO}
+    properties:
+      hibernate:
+        format_sql: true
+    database: ${DB}
+    database-platform: ${DB_PLATFORM}
+  graphql:
+    schema:
+      file-extensions: ${GRAPHQL_SCHEMA_EXTENSIONS}
+      locations: ${GRAPHQL_SCHEMA_LOCATIONS}
+    graphiql:
+      enabled: true
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.type: trace
+messages:
+  basename: ${MESSAGE_BASE}
+  encoding: ${MESSAGE_ENCODING}
+jwt:
+  access-secret: ${JWT_ACCESS_SECRET}
+  refresh-secret: ${JWT_REFRESH_SECRET}
+  access-expire-time: ${JWT_ACCESS_TIME}
+  refresh-expire-time: ${JWT_REFRESH_TIME}
