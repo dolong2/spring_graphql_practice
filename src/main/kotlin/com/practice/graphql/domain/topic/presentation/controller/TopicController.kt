@@ -22,7 +22,7 @@ class TopicController(
         createTopicService.execute(topicRequest)
 
     @SubscriptionMapping
-    fun getPostingsRealTime(): Flux<TopicListRes> =
+    fun getTopicsRealTime(): Flux<TopicListRes> =
         Flux.interval(Duration.ofSeconds(5))
             .map { getAllTopicService.execute() }
 }
