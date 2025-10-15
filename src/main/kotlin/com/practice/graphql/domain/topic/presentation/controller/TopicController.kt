@@ -1,7 +1,7 @@
 package com.practice.graphql.domain.topic.presentation.controller
 
 import com.practice.graphql.domain.topic.presentation.dto.request.TopicRequest
-import com.practice.graphql.domain.topic.presentation.dto.response.TopicResponse
+import com.practice.graphql.domain.topic.presentation.dto.response.TopicRes
 import com.practice.graphql.domain.topic.service.CreateTopicService
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
@@ -12,6 +12,6 @@ class TopicController(
     val createTopicService: CreateTopicService
 ) {
     @MutationMapping
-    fun createTopic(@Argument topicRequest: TopicRequest): TopicResponse =
+    fun createTopic(@Argument topicRequest: TopicRequest): TopicRes =
         createTopicService.execute(topicRequest)
 }
