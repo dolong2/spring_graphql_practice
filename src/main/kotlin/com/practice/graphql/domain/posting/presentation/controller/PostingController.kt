@@ -30,17 +30,17 @@ class PostingController(
         postingGetOneService.execute(id)
 
     @QueryMapping
-    fun getPostings() =
-        postingGetAllService.execute()
+    fun getPostings(@Argument topicId: Long) =
+        postingGetAllService.execute(topicId)
 
     @MutationMapping
     fun updatePosting(@Argument id: Long, @Argument postingRequest: PostingUpdateReq) =
         postingUpdateService.execute(id, postingRequest)
 
     @SubscriptionMapping
-    fun getPostingsRealTime(): Flux<PostingListRes> =
+    fun getPostingsRealTime(@Argument topicId: Long): Flux<PostingListRes> =
         Flux.interval(Duration.ofSeconds(5))
-            .map { postingGetAllService.execute() }
+            .map { postingGetAllService.execute(topicId) }
 
     @SubscriptionMapping
     fun getPostingRealTime(@Argument id: Long): Flux<PostingRes> =

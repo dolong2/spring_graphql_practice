@@ -7,14 +7,14 @@ type Mutation{
 }
 
 type Query{
-    getPostings: PostingListResponse
+    getPostings(topicId: ID!): PostingListResponse
     getPosting(id:ID!): PostingResponse
     getMember(id: ID!): MemberResponse
     getSelfInfo: MemberResponse
 }
 
 type Subscription{
-    getPostingsRealTime: PostingListResponse
+    getPostingsRealTime(topicId: ID!): PostingListResponse
     getPostingRealTime(id: ID!): PostingResponse
     getTopicsRealTime: TopicListResponse
 }
