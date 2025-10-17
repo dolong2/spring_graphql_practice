@@ -27,4 +27,7 @@ enum class ErrorCode(
     // posting
     WRITER_NOT_SAME("D-01", "자신의 게시물이 아닙니다.", ErrorType.ExecutionAborted),
     POSTING_NOT_EXIST("D-02", "해당 포스팅이 존재하지 않습니다.", ErrorType.ExecutionAborted),
+
+    // topic
+    TOPIC_NOT_EXIST("E-01", "해당 토픽이 존재하지 않습니다.", ErrorType.ExecutionAborted),
 }
