@@ -1,7 +1,5 @@
 package com.practice.graphql.global.exception
 
-import com.practice.graphql.global.exception.BasicException
-import graphql.ErrorType
 import graphql.GraphQLError
 import graphql.GraphqlErrorBuilder
 import graphql.schema.DataFetchingEnvironment
@@ -11,13 +9,11 @@ import org.springframework.graphql.execution.DataFetcherExceptionResolverAdapter
 import org.springframework.stereotype.Component
 
 @Component
-class GlobalExceptionHandler: DataFetcherExceptionResolverAdapter() {
-    companion object {
-        private val log: Logger = LoggerFactory.getLogger(this::class.java.simpleName)
-    }
+class GlobalExceptionHandler : DataFetcherExceptionResolverAdapter() {
+    private val log: Logger = LoggerFactory.getLogger(this::class.java.simpleName)
 
-    override fun resolveToSingleError(e: Throwable, env: DataFetchingEnvironment): GraphQLError? {
-        return when (e) {
+    override fun resolveToSingleError(e: Throwable, env: DataFetchingEnvironment): GraphQLError? =
+        when (e) {
             is BasicException ->  {
                 log.warn(e.errorCode.code)
                 log.warn(e.errorCode.msg)
@@ -25,10 +21,9 @@ class GlobalExceptionHandler: DataFetcherExceptionResolverAdapter() {
             }
             else -> {
                 log.error(e.message)
-                super.resolveToSingleError(e, env)
+                toGraphQLError(ErrorCode.INTERNAL_SERVER_ERROR)
             }
         }
-    }
 
     private fun toGraphQLError(errorCode: ErrorCode): GraphQLError? {
         return GraphqlErrorBuilder.newError().message(errorCode.msg).errorType(errorCode.errorType).build()
