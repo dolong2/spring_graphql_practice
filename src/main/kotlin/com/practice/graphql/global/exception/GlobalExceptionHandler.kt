@@ -1,7 +1,5 @@
 package com.practice.graphql.global.exception
 
-import com.practice.graphql.global.exception.BasicException
-import graphql.ErrorType
 import graphql.GraphQLError
 import graphql.GraphqlErrorBuilder
 import graphql.schema.DataFetchingEnvironment
@@ -11,7 +9,7 @@ import org.springframework.graphql.execution.DataFetcherExceptionResolverAdapter
 import org.springframework.stereotype.Component
 
 @Component
-class GlobalExceptionHandler: DataFetcherExceptionResolverAdapter() {
+class GlobalExceptionHandler : DataFetcherExceptionResolverAdapter() {
     companion object {
         private val log: Logger = LoggerFactory.getLogger(this::class.java.simpleName)
     }
