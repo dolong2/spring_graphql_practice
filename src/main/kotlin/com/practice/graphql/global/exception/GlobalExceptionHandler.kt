@@ -10,9 +10,7 @@ import org.springframework.stereotype.Component
 
 @Component
 class GlobalExceptionHandler : DataFetcherExceptionResolverAdapter() {
-    companion object {
-        private val log: Logger = LoggerFactory.getLogger(this::class.java.simpleName)
-    }
+    private val log: Logger = LoggerFactory.getLogger(this::class.java.simpleName)
 
     override fun resolveToSingleError(e: Throwable, env: DataFetchingEnvironment): GraphQLError? =
         when (e) {
