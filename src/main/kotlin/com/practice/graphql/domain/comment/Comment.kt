@@ -1,5 +1,6 @@
 package com.practice.graphql.domain.comment
 
+import com.practice.graphql.domain.member.Member
 import com.practice.graphql.domain.posting.Posting
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
@@ -18,5 +19,8 @@ class Comment(
     var updatedAt: LocalDateTime? = null,
     @ManyToOne
     @JoinColumn(name = "posting_id")
-    val posting: Posting
+    val posting: Posting,
+    @ManyToOne
+    @JoinColumn(name = "writer_id")
+    val writer: Member,
 )
