@@ -3,4 +3,5 @@ type PostingResponse{
     title: String!
     content: String!
     writer: ID!
+    commentList: CommentListResponse!
 }
