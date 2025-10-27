@@ -1,0 +1,7 @@
+type CommentResponse {
+    id: ID!,
+    content: String!,
+    createdAt: String!,
+    updatedAt: String,
+    writer: ID!
+}
