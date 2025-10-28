@@ -4,7 +4,7 @@ type Mutation{
     signIn(signInRequest: SignInRequest): TokenResponse
     updatePosting(id:ID!, postingRequest: PostingRequest!): PostingResponse
     createTopic(topicRequest: TopicRequest!): TopicResponse
-    writeComment(postingId: ID!, writeCommentRequest: WriteCommentRequest!): SuccessResponse
+    createComment(postingId: ID!, writeCommentRequest: WriteCommentRequest!): SuccessResponse
 }
 
 type Query{
