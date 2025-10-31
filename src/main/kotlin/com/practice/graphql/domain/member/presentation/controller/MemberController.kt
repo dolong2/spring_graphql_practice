@@ -19,7 +19,7 @@ class MemberController(
 ){
 
     @MutationMapping
-    fun signupMember(@Argument signupRequest: SignupReq): SuccessResponse{
+    fun signupMember(@Argument signupRequest: SignupReq): SuccessResponse {
         signupService.execute(signupRequest)
         return SuccessResponse
     }
