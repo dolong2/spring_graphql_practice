@@ -8,7 +8,7 @@ class AuthDetails(
     val member: Member,
 ) :UserDetails {
 
-    fun getEmail(): String = member.email
+    fun getId(): Long = member.id
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
         return member.roles
