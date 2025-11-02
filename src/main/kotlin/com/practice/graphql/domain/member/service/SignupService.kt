@@ -16,7 +16,7 @@ class SignupService(
     private val memberFacade: MemberFacade,
 ){
     @Transactional(rollbackFor = [BasicException::class])
-    fun execute(signupReq: SignupReq){
+    fun execute(signupReq: SignupReq) {
         if(memberFacade.existMember(signupReq.email))
             throw MemberAlreadyExistException()
         val encodedPassword = passwordEncoder.encode(signupReq.password)

@@ -2,6 +2,8 @@ package com.practice.graphql.domain.member.presentation.controller
 
 import com.practice.graphql.domain.member.presentation.dto.request.SignInReq
 import com.practice.graphql.domain.member.presentation.dto.request.SignupReq
+import com.practice.graphql.domain.member.presentation.dto.response.MemberRes
+import com.practice.graphql.domain.member.presentation.dto.response.TokenRes
 import com.practice.graphql.domain.member.service.GetOneMemberService
 import com.practice.graphql.domain.member.service.SignInService
 import com.practice.graphql.domain.member.service.SignupService
@@ -25,14 +27,14 @@ class MemberController(
     }
 
     @MutationMapping
-    fun signIn(@Argument signInRequest: SignInReq) =
+    fun signIn(@Argument signInRequest: SignInReq): TokenRes =
         signInService.execute(signInRequest)
 
     @QueryMapping
-    fun getMember(@Argument id: Long) =
+    fun getMember(@Argument id: Long): MemberRes =
         getOneMemberService.execute(id)
 
     @QueryMapping
-    fun getSelfInfo() =
+    fun getSelfInfo(): MemberRes =
         getOneMemberService.execute()
 }

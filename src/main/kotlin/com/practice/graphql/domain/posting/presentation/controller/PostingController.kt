@@ -22,19 +22,19 @@ class PostingController(
 ){
 
     @MutationMapping
-    fun writePosting(@Argument topicId: Long, @Argument postingRequest: PostingReq) =
+    fun writePosting(@Argument topicId: Long, @Argument postingRequest: PostingReq): PostingRes =
         postingSaveService.execute(topicId, postingRequest)
 
     @QueryMapping
-    fun getPosting(@Argument id: Long) =
+    fun getPosting(@Argument id: Long): PostingRes =
         postingGetOneService.execute(id)
 
     @QueryMapping
-    fun getPostings(@Argument topicId: Long) =
+    fun getPostings(@Argument topicId: Long): PostingListRes =
         postingGetAllService.execute(topicId)
 
     @MutationMapping
-    fun updatePosting(@Argument id: Long, @Argument postingRequest: PostingUpdateReq) =
+    fun updatePosting(@Argument id: Long, @Argument postingRequest: PostingUpdateReq): PostingRes =
         postingUpdateService.execute(id, postingRequest)
 
     @SubscriptionMapping

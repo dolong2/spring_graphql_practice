@@ -37,7 +37,7 @@ class JwtReqFilter(
         filterChain.doFilter(request, response)
     }
 
-    fun registerSecurityContext(request: HttpServletRequest, accessToken: String){
+    fun registerSecurityContext(request: HttpServletRequest, accessToken: String) {
         val userDetail = authDetailService.loadUserByUsername(tokenProvider.getUserEmail(accessToken))
         val authenticationToken = UsernamePasswordAuthenticationToken(userDetail, null, userDetail.authorities)
         authenticationToken.details = WebAuthenticationDetailsSource().buildDetails(request)

@@ -8,7 +8,7 @@ import org.springframework.security.web.AuthenticationEntryPoint
 import org.springframework.stereotype.Component
 
 @Component
-class CustomAuthenticationEntryPointHandler: AuthenticationEntryPoint {
+class CustomAuthenticationEntryPointHandler : AuthenticationEntryPoint {
 
     private val log = LoggerFactory.getLogger(this.javaClass.simpleName)
 

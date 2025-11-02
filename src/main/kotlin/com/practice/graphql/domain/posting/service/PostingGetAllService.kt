@@ -14,7 +14,7 @@ class PostingGetAllService(
     private val topicFacade: TopicFacade,
 ){
     @Transactional(readOnly = true, rollbackFor = [BasicException::class])
-    fun execute(topicId: Long) =
+    fun execute(topicId: Long): PostingListRes =
         topicFacade.getById(topicId)
             .let { postingRepository.findAllByTopic(it) }
             .map { PostingRes(it) }

@@ -15,7 +15,7 @@ class CommentController(
     fun createComment(
         @Argument postingId: Long,
         @Argument writeCommentReqDto: WriteCommentReqDto
-    ) =
+    ): SuccessResponse =
         writeCommentService.execute(postingId, writeCommentReqDto)
             .let { SuccessResponse }
 }

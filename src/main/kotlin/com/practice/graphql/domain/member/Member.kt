@@ -30,6 +30,8 @@ class Member(
     @OneToMany(cascade = [CascadeType.REMOVE], mappedBy = "writer")
     val postings: List<Posting> = mutableListOf()
     var refreshToken: String = ""
+
+
     fun updateRefreshToken(refreshToken: String){
         this.refreshToken = refreshToken
     }

@@ -17,17 +17,17 @@ import java.util.Date
 class TokenProvider(
     private val jwtProperty: JwtProperty
 ) {
-    private enum class TokenType(val value: String){
+    private enum class TokenType(val value: String) {
         ACCESS_TOKEN("accessToken"),
         REFRESH_TOKEN("refreshToken")
     }
-    private enum class TokenClaimName(val value: String){
+    private enum class TokenClaimName(val value: String) {
         USER_EMAIL("userEmail"),
         TOKEN_TYPE("tokenType"),
         ROLES("roles")
     }
 
-    private fun extractAccessClaims(token: String): Claims{
+    private fun extractAccessClaims(token: String): Claims {
         val tokenR = token.replace("Bearer ", "")
         return Jwts.parserBuilder()
             .setSigningKey(jwtProperty.accessSecret)
@@ -36,7 +36,7 @@ class TokenProvider(
             .body
     }
 
-    private fun extractRefreshToken(token: String): Claims{
+    private fun extractRefreshToken(token: String): Claims {
         val tokenR = token.replace("Bearer ", "")
         return Jwts.parserBuilder()
             .setSigningKey(jwtProperty.refreshSecret)
@@ -65,6 +65,7 @@ class TokenProvider(
         claims[TokenClaimName.ROLES.value] = roles
         return createToken(TokenType.ACCESS_TOKEN, email, jwtProperty.accessExpireTime, jwtProperty.accessSecret, claims)
     }
+
     fun createRefreshToken(email: String): String {
         return createToken(TokenType.REFRESH_TOKEN, email, jwtProperty.refreshExpireTime, jwtProperty.refreshSecret, Jwts.claims())
     }
