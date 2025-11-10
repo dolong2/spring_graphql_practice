@@ -11,5 +11,9 @@ spec:
     - 'echo $GRAPHQL_CONFIG > graphql.config.yml'
     - 'echo $GRAPHQL_SCHEMA > schema.graphqls'
     - 'echo $GRAPHQL_RESPONSE_SCHEMA > response.graphqls'
+    - 'echo $GRAPHQL_TOPIC_SCHEMA > topic.graphqls'
+    - 'echo $GRAPHQL_POSTING_SCHEMA > posting.graphqls'
+    - 'echo $GRAPHQL_MEMBER_SCHEMA > member.graphqls'
+    - 'echo $GRAPHQL_COMMENT_SCHEMA > comment.graphqls'
   labels:
     - graphql
