@@ -10,5 +10,6 @@ spec:
   initialScripts:
     - 'echo $GRAPHQL_CONFIG > graphql.config.yml'
     - 'echo $GRAPHQL_SCHEMA > schema.graphqls'
+    - 'echo $GRAPHQL_RESPONSE_SCHEMA > response.graphqls'
   labels:
     - graphql
