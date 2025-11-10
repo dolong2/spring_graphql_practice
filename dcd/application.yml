@@ -7,5 +7,8 @@ spec:
   applicationType: SPRING_BOOT
   port: 8080
   version: 11
+  initialScripts:
+    - 'echo $GRAPHQL_CONFIG > graphql.config.yml'
+    - 'echo $GRAPHQL_SCHEMA > schema.graphqls'
   labels:
     - graphql
