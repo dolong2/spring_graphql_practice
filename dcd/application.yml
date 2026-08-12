@@ -6,7 +6,7 @@ spec:
   githubUrl: https://github.com/dolong2/spring_graphql_practice.git
   applicationType: SPRING_BOOT
   port: 8080
-  version: 11
+  version: 17
   initialScripts:
     - 'echo $GRAPHQL_CONFIG > graphql.config.yml'
     - 'echo $GRAPHQL_SCHEMA > schema.graphqls'
