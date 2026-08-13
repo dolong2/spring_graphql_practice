@@ -18,6 +18,9 @@ class CustomAuthenticationEntryPointHandler : AuthenticationEntryPoint {
         authException: AuthenticationException?
     ) {
         log.error("==========AuthenticationEntryPoint==========")
+        log.error(authException?.message)
+        log.error(request?.requestURI)
+        log.error("==========AuthenticationEntryPoint==========")
         response?.sendError(HttpServletResponse.SC_UNAUTHORIZED)
     }
 }
