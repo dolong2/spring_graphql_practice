@@ -17,7 +17,10 @@ class CustomAccessDeniedHandler : AccessDeniedHandler {
         response: HttpServletResponse,
         accessDeniedException: AccessDeniedException
     ) {
-        log.error("==========Access Denied==========")
+        log.error("==========AuthenticationEntryPoint==========")
+        log.error(accessDeniedException.message)
+        log.error(request.requestURI)
+        log.error("==========AuthenticationEntryPoint==========")
         response.sendError(HttpServletResponse.SC_UNAUTHORIZED)
     }
 }
